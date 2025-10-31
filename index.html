@@ -92,12 +92,11 @@ btn.addEventListener('click', () => {
     card.style.opacity = 1;         
   }, 800); // délai pour l’effet dramatique
 
-  // Message final après la vidéo
-  const VIDEO_DURATION_MS = 50; // durée approximative de la vidéo en ms
+  // Message final avec fade-in + zoom après petit délai
   setTimeout(() => {
     finalMessage.style.opacity = "1";
-    finalMessage.style.transform = "scale(1)";
-  }, VIDEO_DURATION_MS + 800); // ajoute le délai dramatique
+    finalMessage.style.transform = "scale(1.2)";
+  }, 600); // 0,6 seconde après le lancement de la vidéo
 });
 </script>
 </body>
