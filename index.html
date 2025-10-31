@@ -15,6 +15,7 @@
     align-items:center;
     justify-content:center;
     padding:24px;
+    transition: background 0.8s ease, color 0.8s ease;
   }
   .card{
     max-width:760px;
@@ -24,6 +25,7 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     border-radius:8px;
     text-align:center;
+    transition: opacity 0.8s ease;
   }
   button{
     background:#7a4b35; 
@@ -35,29 +37,48 @@
     font-size:16px;
   }
   button:disabled { opacity:0.5; cursor:not-allowed; }
-  img{
+  iframe{
     margin-top:20px;
-    max-width:100%;
+    width:100%;
+    height:0;
+    border:none;
     border-radius:8px;
-    display:none; /* cachée au départ */
+    opacity:0;
+    transition: height 0.8s ease, opacity 0.8s ease;
   }
 </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" id="card">
     <h1>Le Résultat du Sacrifice</h1>
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
-    <img id="sacrificeImage" src="https://i.imgur.com/RLX2QdK.jpg" alt="Résultat du sacrifice">
+    <iframe id="videoFrame" src="" allow="autoplay; fullscreen"></iframe>
   </div>
 
 <script>
 const btn = document.getElementById('showBtn');
-const img = document.getElementById('sacrificeImage');
+const iframe = document.getElementById('videoFrame');
+const body = document.body;
+const card = document.getElementById('card');
+
+// Identifiant de ta vidéo Streamable
+const VIDEO_ID = "yse3pj";
+const EMBED_URL = "https://streamable.com/e/" + VIDEO_ID + "?autoplay=1";
 
 btn.addEventListener('click', () => {
-  img.style.display = 'block';  // affiche l'image
-  btn.disabled = true;           // désactive le bouton après clic
+  btn.disabled = true;         // bloque le bouton
+  card.style.opacity = 0;      // fade out la carte
+  body.style.background = "#000";
+  body.style.color = "#000";
+
+  setTimeout(() => {
+    // Affiche et lance la vidéo après l'écran noir
+    iframe.src = EMBED_URL;
+    iframe.style.height = "360px";  // ajuste selon ton besoin
+    iframe.style.opacity = "1";
+    card.style.opacity = 1;         // ré-affiche la carte (ou laisse fade out)
+  }, 800); // délai pour l’effet dramatique
 });
 </script>
 </body>
