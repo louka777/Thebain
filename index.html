@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Le Résultat du Sacrifice</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+<style>
+  body{
+    background: radial-gradient(#2b2118,#0f0b08);
+    color:#e9d8c7;
+    font-family: "Cormorant Garamond", "Cinzel", serif;
+    display:flex;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .card{
+    max-width:760px;
+    background: linear-gradient(180deg, rgba(255,250,240,0.03), rgba(0,0,0,0.25));
+    border:1px solid rgba(233,216,199,0.06);
+    padding:28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    border-radius:8px;
+    text-align:center;
+  }
+  button{
+    background:#7a4b35; 
+    color:#fff; 
+    border:none; 
+    padding:10px 14px; 
+    border-radius:6px; 
+    cursor:pointer;
+    font-size:16px;
+  }
+  button:disabled { opacity:0.5; cursor:not-allowed; }
+  img{
+    margin-top:20px;
+    max-width:100%;
+    border-radius:8px;
+    display:none; /* cachée au départ */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Le Résultat du Sacrifice</h1>
+    <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
+    <button id="showBtn">J’ai fait mon sacrifice</button>
+    <img id="sacrificeImage" src="https://i.imgur.com/RLX2QdK.jpg" alt="Résultat du sacrifice">
+  </div>
+
+<script>
+const btn = document.getElementById('showBtn');
+const img = document.getElementById('sacrificeImage');
+
+btn.addEventListener('click', () => {
+  img.style.display = 'block';  // affiche l'image
+  btn.disabled = true;           // désactive le bouton après clic
+});
+</script>
+</body>
+</html>
