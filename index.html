@@ -9,7 +9,7 @@
   body{
     background: radial-gradient(#2b2118,#0f0b08);
     color:#e9d8c7;
-    font-family: "Cormorant Garamond","Cinzel", serif;
+    font-family:"Cormorant Garamond","Cinzel", serif;
     display:flex;
     min-height:100vh;
     align-items:center;
@@ -61,7 +61,7 @@
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
     <iframe id="videoFrame"
-      src="https://streamable.com/e/yse3pj"
+      src="https://vidplay.io/watch/izPEWs"
       allowfullscreen allow="fullscreen">
     </iframe>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
@@ -83,11 +83,11 @@ btn.addEventListener('click', () => {
     iframe.style.display = 'block';
     card.style.opacity = 1;
 
-    // Afficher message final après un délai approximatif
+    // Délai pour afficher le message final
     setTimeout(() => {
       finalMessage.style.opacity = '1';
       finalMessage.style.transform = 'scale(1)';
-    }, 5000); // ajuste selon la durée de la vidéo
+    }, 5000); // ajuste ce délai en fonction de la durée de ta vidéo
   }, 800);
 });
 </script>
