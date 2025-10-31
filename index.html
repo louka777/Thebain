@@ -37,11 +37,10 @@
     font-size:16px;
   }
   button:disabled { opacity:0.5; cursor:not-allowed; }
-  iframe{
+  video{
     margin-top:20px;
-    width:100%;
-    height:360px;
-    border:none;
+    max-width:100%;
+    border-radius:8px;
     display:none;
   }
   #finalMessage{
@@ -60,7 +59,9 @@
     <h1>Le Résultat du Sacrifice</h1>
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
-    <iframe id="sacrificeVideo" src="https://streamable.com/rur55v?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <video id="sacrificeVideo" 
+           src="https://drive.google.com/uc?export=download&id=12eJ9adMMtdKOz48FkCrLoTTLmVHxtGkx" 
+           autoplay muted playsinline controls></video>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
@@ -70,22 +71,29 @@ const video = document.getElementById('sacrificeVideo');
 const finalMessage = document.getElementById('finalMessage');
 const card = document.getElementById('card');
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', async () => {
   btn.disabled = true;
   card.style.opacity = 0;
   document.body.style.background = "#000";
   document.body.style.color = "#000";
 
-  setTimeout(() => {
+  setTimeout(async () => {
     video.style.display = 'block';
+    video.muted = true;          // nécessaire pour autoplay mobile
+    video.playsInline = true;    // iOS inline playback
+    try {
+      await video.play();
+    } catch(err){
+      console.log("Autoplay bloqué, l'utilisateur devra cliquer pour démarrer");
+    }
     card.style.opacity = 1;
-
-    // Message final après 1 seconde (approximatif, comme autoplay iframe ne déclenche pas 'ended')
-    setTimeout(() => {
-      finalMessage.style.opacity = '1';
-      finalMessage.style.transform = 'scale(1)';
-    }, 5000); // ajuste la durée selon la longueur de ta vidéo
   }, 800);
+});
+
+// Message final avec effet fondu + zoom
+video.addEventListener('ended', () => {
+  finalMessage.style.opacity = '1';
+  finalMessage.style.transform = 'scale(1)';
 });
 </script>
 </body>
