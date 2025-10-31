@@ -46,6 +46,15 @@
     opacity:0;
     transition: height 0.8s ease, opacity 0.8s ease;
   }
+  #finalMessage{
+    margin-top:20px;
+    font-style:italic;
+    font-size:16px;
+    color:#cfc1ad;
+    opacity:0;
+    transform: scale(0.8);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+  }
 </style>
 </head>
 <body>
@@ -54,6 +63,7 @@
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
     <iframe id="videoFrame" src="" allow="autoplay; fullscreen"></iframe>
+    <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
 <script>
@@ -61,6 +71,7 @@ const btn = document.getElementById('showBtn');
 const iframe = document.getElementById('videoFrame');
 const body = document.body;
 const card = document.getElementById('card');
+const finalMessage = document.getElementById('finalMessage');
 
 // Identifiant de ta vidéo Streamable
 const VIDEO_ID = "yse3pj";
@@ -77,8 +88,18 @@ btn.addEventListener('click', () => {
     iframe.src = EMBED_URL;
     iframe.style.height = "360px";  // ajuste selon ton besoin
     iframe.style.opacity = "1";
-    card.style.opacity = 1;         // ré-affiche la carte (ou laisse fade out)
+    card.style.opacity = 1;         // ré-affiche la carte
   }, 800); // délai pour l’effet dramatique
+});
+
+// Affiche le message final après la fin de la vidéo
+iframe.addEventListener('load', () => {
+  // Comme on ne peut pas détecter l'événement "ended" sur un iframe Streamable,
+  // on utilise un délai approximatif basé sur la durée de la vidéo (ex: 30s)
+  setTimeout(() => {
+    finalMessage.style.opacity = "1";
+    finalMessage.style.transform = "scale(1)";
+  }, 30000); // 30 secondes, ajuste selon la durée réelle de ta vidéo
 });
 </script>
 </body>
