@@ -37,12 +37,14 @@
     cursor:pointer;
   }
   button:disabled { opacity:0.5; cursor:not-allowed; }
-  iframe{
+  video{
     margin-top:20px;
-    width:100%;
-    height:360px;
-    border:none;
+    max-width:100%;
+    border-radius:8px;
     display:none;
+    opacity:0;
+    transform: scale(0.6); /* Zoom initial plus petit */
+    transition: opacity 1s ease, transform 1s ease;
   }
   #finalMessage{
     margin-top:20px;
@@ -60,35 +62,41 @@
     <h1>Le Résultat du Sacrifice</h1>
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
-    <iframe id="videoFrame"
-      src="https://vidplay.io/watch/izPEWs"
-      allowfullscreen allow="fullscreen">
-    </iframe>
+    <video id="sacrificeVideo" 
+           src="https://drive.google.com/uc?export=download&id=12eJ9adMMtdKOz48FkCrLoTTLmVHxtGkx" 
+           controls playsinline></video>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
 <script>
 const btn = document.getElementById('showBtn');
-const iframe = document.getElementById('videoFrame');
+const video = document.getElementById('sacrificeVideo');
 const finalMessage = document.getElementById('finalMessage');
 const card = document.getElementById('card');
 
 btn.addEventListener('click', () => {
   btn.disabled = true;
-  card.style.opacity = 0;
+
+  // Écran noir complet
   document.body.style.background = "#000";
   document.body.style.color = "#000";
+  card.style.opacity = 0;
 
+  // Après 1 seconde, montrer la vidéo avec fondu + zoom dramatique
   setTimeout(() => {
-    iframe.style.display = 'block';
+    video.style.display = 'block';
+    setTimeout(() => { 
+      video.style.opacity = 1; 
+      video.style.transform = 'scale(1.1)'; // zoom final légèrement plus grand
+    }, 50);
     card.style.opacity = 1;
+  }, 1000);
+});
 
-    // Délai pour afficher le message final
-    setTimeout(() => {
-      finalMessage.style.opacity = '1';
-      finalMessage.style.transform = 'scale(1)';
-    }, 5000); // ajuste ce délai en fonction de la durée de ta vidéo
-  }, 800);
+// Message final avec effet fondu + zoom après fin vidéo
+video.addEventListener('ended', () => {
+  finalMessage.style.opacity = '1';
+  finalMessage.style.transform = 'scale(1)';
 });
 </script>
 </body>
