@@ -61,7 +61,7 @@
     <button id="showBtn">J’ai fait mon sacrifice</button>
     <video id="sacrificeVideo" 
            src="https://drive.google.com/uc?export=download&id=12eJ9adMMtdKOz48FkCrLoTTLmVHxtGkx" 
-           autoplay muted playsinline controls></video>
+           controls playsinline></video>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
@@ -71,21 +71,14 @@ const video = document.getElementById('sacrificeVideo');
 const finalMessage = document.getElementById('finalMessage');
 const card = document.getElementById('card');
 
-btn.addEventListener('click', async () => {
+btn.addEventListener('click', () => {
   btn.disabled = true;
   card.style.opacity = 0;
   document.body.style.background = "#000";
   document.body.style.color = "#000";
 
-  setTimeout(async () => {
+  setTimeout(() => {
     video.style.display = 'block';
-    video.muted = true;          // nécessaire pour autoplay mobile
-    video.playsInline = true;    // iOS inline playback
-    try {
-      await video.play();
-    } catch(err){
-      console.log("Autoplay bloqué, l'utilisateur devra cliquer pour démarrer");
-    }
     card.style.opacity = 1;
   }, 800);
 });
