@@ -75,7 +75,8 @@ const finalMessage = document.getElementById('finalMessage');
 
 // Identifiant de ta vidéo Streamable
 const VIDEO_ID = "yse3pj";
-const EMBED_URL = "https://streamable.com/e/" + VIDEO_ID + "?autoplay=1";
+// autoplay=1 et loop=0 pour démarrage auto et pas de boucle
+const EMBED_URL = "https://streamable.com/e/" + VIDEO_ID + "?autoplay=1&loop=0";
 
 btn.addEventListener('click', () => {
   btn.disabled = true;         // bloque le bouton
@@ -88,18 +89,15 @@ btn.addEventListener('click', () => {
     iframe.src = EMBED_URL;
     iframe.style.height = "360px";  // ajuste selon ton besoin
     iframe.style.opacity = "1";
-    card.style.opacity = 1;         // ré-affiche la carte
+    card.style.opacity = 1;         
   }, 800); // délai pour l’effet dramatique
-});
 
-// Affiche le message final après la fin de la vidéo
-iframe.addEventListener('load', () => {
-  // Comme on ne peut pas détecter l'événement "ended" sur un iframe Streamable,
-  // on utilise un délai approximatif basé sur la durée de la vidéo (ex: 30s)
+  // Message final après la vidéo
+  const VIDEO_DURATION_MS = 50; // durée approximative de la vidéo en ms
   setTimeout(() => {
     finalMessage.style.opacity = "1";
     finalMessage.style.transform = "scale(1)";
-  }, 30000); // 30 secondes, ajuste selon la durée réelle de ta vidéo
+  }, VIDEO_DURATION_MS + 800); // ajoute le délai dramatique
 });
 </script>
 </body>
