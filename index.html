@@ -37,10 +37,11 @@
     font-size:16px;
   }
   button:disabled { opacity:0.5; cursor:not-allowed; }
-  video{
+  iframe{
     margin-top:20px;
-    max-width:100%;
-    border-radius:8px;
+    width:100%;
+    height:360px;
+    border:none;
     display:none;
   }
   #finalMessage{
@@ -59,9 +60,7 @@
     <h1>Le Résultat du Sacrifice</h1>
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
-    <video id="sacrificeVideo" 
-           src="video-output-D1FA8578-A5B0-4FB2-9B2B-6C11E1CE012C-1.mp4" 
-           autoplay muted playsinline controls></video>
+    <iframe id="sacrificeVideo" src="https://streamable.com/rur55v?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
@@ -69,32 +68,24 @@
 const btn = document.getElementById('showBtn');
 const video = document.getElementById('sacrificeVideo');
 const finalMessage = document.getElementById('finalMessage');
-const body = document.body;
 const card = document.getElementById('card');
 
-btn.addEventListener('click', async () => {
+btn.addEventListener('click', () => {
   btn.disabled = true;
   card.style.opacity = 0;
-  body.style.background = "#000";
-  body.style.color = "#000";
+  document.body.style.background = "#000";
+  document.body.style.color = "#000";
 
-  setTimeout(async () => {
+  setTimeout(() => {
     video.style.display = 'block';
-    video.muted = true;          // garantit autoplay sur mobile
-    video.playsInline = true;    // iOS inline playback
-    try {
-      await video.play();        // lance la vidéo
-    } catch(err){
-      console.log("Autoplay bloqué, l'utilisateur devra cliquer pour démarrer");
-    }
     card.style.opacity = 1;
-  }, 800);
-});
 
-// Message final avec effet fondu + zoom
-video.addEventListener('ended', () => {
-  finalMessage.style.opacity = '1';
-  finalMessage.style.transform = 'scale(1)';
+    // Message final après 1 seconde (approximatif, comme autoplay iframe ne déclenche pas 'ended')
+    setTimeout(() => {
+      finalMessage.style.opacity = '1';
+      finalMessage.style.transform = 'scale(1)';
+    }, 5000); // ajuste la durée selon la longueur de ta vidéo
+  }, 800);
 });
 </script>
 </body>
