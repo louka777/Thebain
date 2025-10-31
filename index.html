@@ -61,8 +61,8 @@
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
     <iframe id="videoFrame"
-      src="https://vidplay.io/watch/bOmlEd"
-      allow="fullscreen" allowfullscreen>
+      src="https://streamable.com/e/yse3pj"
+      allowfullscreen allow="fullscreen">
     </iframe>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
@@ -83,11 +83,11 @@ btn.addEventListener('click', () => {
     iframe.style.display = 'block';
     card.style.opacity = 1;
 
-    // Afficher message final après un délai estimé (à ajuster selon la durée de la vidéo)
+    // Afficher message final après un délai approximatif
     setTimeout(() => {
       finalMessage.style.opacity = '1';
       finalMessage.style.transform = 'scale(1)';
-    }, 5000);
+    }, 5000); // ajuste selon la durée de la vidéo
   }, 800);
 });
 </script>
