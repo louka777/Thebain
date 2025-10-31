@@ -59,7 +59,7 @@
     <h1>Le Résultat du Sacrifice</h1>
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
-    <video id="sacrificeVideo" src="VOTRE-LIEN-VIDEO.mp4" autoplay muted controls></video>
+    <video id="sacrificeVideo" src="video-output-D1FA8578-A5B0-4FB2-9B2B-6C11E1CE012C-1.mp4" autoplay muted controls></video>
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
@@ -78,7 +78,7 @@ btn.addEventListener('click', () => {
 
   setTimeout(() => {
     video.style.display = 'block';
-    video.play();
+    video.play();  // autoplay fonctionne avec .mp4
     card.style.opacity = 1;
   }, 800);
 });
