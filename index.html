@@ -6,77 +6,83 @@
 <title>Le Résultat du Sacrifice</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&display=swap" rel="stylesheet">
 <style>
-  body{
-    background: radial-gradient(#2b2118,#0f0b08);
-    color:#e9d8c7;
+  body {
+    background: radial-gradient(#2b2118, #0f0b08);
+    color: #e9d8c7;
     font-family: "Cormorant Garamond", "Cinzel", serif;
-    display:flex;
-    min-height:100vh;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
     transition: background 0.8s ease, color 0.8s ease;
   }
-  .card{
-    max-width:760px;
+
+  .card {
+    max-width: 760px;
     background: linear-gradient(180deg, rgba(255,250,240,0.03), rgba(0,0,0,0.25));
-    border:1px solid rgba(233,216,199,0.06);
-    padding:28px;
+    border: 1px solid rgba(233,216,199,0.06);
+    padding: 28px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    border-radius:8px;
-    text-align:center;
+    border-radius: 8px;
+    text-align: center;
     transition: opacity 0.8s ease;
   }
-  button{
-    background:#7a4b35; 
-    color:#fff; 
-    border:none; 
-    padding:10px 14px; 
-    border-radius:6px; 
-    cursor:pointer;
-    font-size:16px;
+
+  button {
+    background: #7a4b35; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 14px; 
+    border-radius: 6px; 
+    cursor: pointer;
+    font-size: 16px;
   }
-  button:disabled { opacity:0.5; cursor:not-allowed; }
-  iframe{
-    margin-top:20px;
-    width:100%;
-    height:0;
-    border:none;
-    border-radius:8px;
-    opacity:0;
-    transition: height 0.8s ease, opacity 0.8s ease;
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
-  #finalMessage{
-    margin-top:20px;
-    font-style:italic;
-    font-size:16px;
-    color:#cfc1ad;
-    opacity:0;
+
+  img {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  #finalMessage {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: 16px;
+    color: #cfc1ad;
+    opacity: 0;
     transform: scale(0.8);
     transition: opacity 1.5s ease, transform 1.5s ease;
   }
 </style>
 </head>
+
 <body>
   <div class="card" id="card">
     <h1>Le Résultat du Sacrifice</h1>
     <p>Appuie sur le bouton une fois que tu as fait ton sacrifice :</p>
     <button id="showBtn">J’ai fait mon sacrifice</button>
-    <iframe id="videoFrame" src="" allow="autoplay; fullscreen"></iframe>
+    <img id="resultImage" src="" alt="Résultat du sacrifice">
     <p id="finalMessage">N’hésitez pas à screener ce document, il pourrait vous être important.</p>
   </div>
 
 <script>
 const btn = document.getElementById('showBtn');
-const iframe = document.getElementById('videoFrame');
+const img = document.getElementById('resultImage');
 const body = document.body;
 const card = document.getElementById('card');
 const finalMessage = document.getElementById('finalMessage');
 
-// Identifiant de ta vidéo Streamable
-const VIDEO_ID = "yse3pj";
-// autoplay=1 et loop=0 pour démarrage auto et pas de boucle
-const EMBED_URL = "https://streamable.com/e/" + VIDEO_ID + "?autoplay=1&loop=0";
+// Ton image dans le même dossier que ce fichier
+const IMAGE_URL = "IMG_3323.jpeg";
 
 btn.addEventListener('click', () => {
   btn.disabled = true;         // bloque le bouton
@@ -85,10 +91,9 @@ btn.addEventListener('click', () => {
   body.style.color = "#000";
 
   setTimeout(() => {
-    // Affiche et lance la vidéo après l'écran noir
-    iframe.src = EMBED_URL;
-    iframe.style.height = "360px";  // ajuste selon ton besoin
-    iframe.style.opacity = "1";
+    // Affiche l’image après l’écran noir
+    img.src = IMAGE_URL;
+    img.style.opacity = "1";
     card.style.opacity = 1;         
   }, 800); // délai pour l’effet dramatique
 
@@ -96,7 +101,7 @@ btn.addEventListener('click', () => {
   setTimeout(() => {
     finalMessage.style.opacity = "1";
     finalMessage.style.transform = "scale(1.2)";
-  }, 600); // 0,6 seconde après le lancement de la vidéo
+  }, 600); // 0,6 seconde après le lancement de l’image
 });
 </script>
 </body>
